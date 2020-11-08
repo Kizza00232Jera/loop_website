@@ -14,7 +14,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 html, body {
@@ -41,25 +42,9 @@ body > header {
     margin-top: 50px;
     position: relative;
     grid-column-start: 2;
+    padding: 0 15vw;
     grid-column-end: 3;
-}
-
-body > header::before,
-body > header::after {
-    content: '';
-    height: 100%;
-    width: 15vw;
-    background-color: var(--white);
-    position: absolute;
-    top: 0;
-}
-
-body > header::before {
-    left: -15vw;
-}
-
-body > header::after {
-    right: -15vw;
+    background: white;
 }
 
 nav {
@@ -83,8 +68,9 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: var(--darkgray);
-    font-size: 1.4vw;
-    font-weight: 500;
+    font-size: 1vw;
+    font-weight: 600;
+    -webkit-transition: 0.15s ease-in-out;
     transition: 0.15s ease-in-out;
 }
 
@@ -97,10 +83,12 @@ nav ul li a:hover {
 }
 
 .logo {
-    top: -32px;
+    top: -40px;
     position: absolute;
     width: 150px;
     height: auto;
+    -webkit-transition: 0.15s ease-in-out;
+    transition: 0.15s ease-in-out;
 }
 
 #menuButton {
@@ -116,9 +104,10 @@ nav ul li a:hover {
     font-family: Raleway, sans-serif;
     color: var(--darkgray);
     text-decoration: none;
-    right: 0;
-    top: 28%;
+    right: 15vw;
+    top: 25%;
     font-size: 1vw;
+    -webkit-transition: 0.5s;
     transition: 0.5s;
 }
 
@@ -133,45 +122,21 @@ section {
     position: relative;
 }
 
-section.flipped::after, section.flipped::before {
-    content: '';
-    background: rgb(255, 255, 255);
-    width: 15vw;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-}
-
-section.flipped::after {
-    right: -15vw;
-}
-
-section.flipped::before {
-    left: -15vw;
-}
-
-section, footer {
-    grid-column-start: 2;
-    grid-column-end: 3;
-}
-
 /* default section */
 section p {
     margin-top: 10px;
-    padding: 7px;
     grid-column-start: 1;
     grid-column-end: 2;
 }
 
-section header {
+section .item-header {
     color: white;
     background-color: var(--darkgreen);
     position: relative;
     padding: 20px 0;
 }
 
-section header::before, section header::after {
+section .item-header::before, section .item-header::after {
     content: ' ';
     height: 100%;
     background-color: var(--darkgreen);
@@ -179,15 +144,15 @@ section header::before, section header::after {
     z-index: 100;
 } 
 
-section header::before {
+section .item-header::before {
     top: 0;
-    width: 52px;
+    width: 50px;
     left: -50px;
 }
 
-section header::after {
-    width: 60%;
-    right: -60%;
+section .item-header::after {
+    width: 65%;
+    right: -65%;
     top: 0;
     z-index: 1;
 }
@@ -202,21 +167,23 @@ section img {
     width: 100%;
     height: auto;
     border-radius: 50%;
-    z-index: 100;
+    z-index: 150;
+    position: relative;
 }
 
-section header .link {
+section .item-header .link {
     color: var(--lightgreen);
+    -webkit-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
     margin-top: 4px;
     font-size: 1.3vw;
 }
 
-section header .link:visited {
+section .item-header .link:visited {
     color: var(--lightgreen);
 }
 
-section header .link:hover {
+section .item-header .link:hover {
     color: var(--white);
 }
 
@@ -230,35 +197,42 @@ section.flipped img {
     left: 0;
 }
 
-section.flipped header {
+section.flipped .item-header {
     padding: 20px 0;
 }
 
-section.flipped header::before {
+section.flipped .item-header::before {
     width: 55px;
     left: unset;
     right: -50px;
 }
 
-section.flipped header::after {
+section.flipped .item-header::after {
     right: unset;
-    left: -60%;
+    left: -65%;
 }
 
 /* christmas section */
 
-.christmas header {
+.christmas .item-header {
     background-color: #E20000;
 }
 
-.christmas header::before,
-.christmas header::after {
+.christmas .item-header::before,
+.christmas .item-header::after {
     background-color: #E20000;
 }
 
 /*footer section*/
 
+footer section span {
+    color: var(--darkgreen);
+    font-weight: 600;
+}
+
 .flex-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-left: 34vw;
 }
@@ -284,53 +258,106 @@ section.flipped header::after {
 
 .item-centre-hours {
     grid-area: centreHours;
-    align-self: center;
+    align-self: center top;
 }
 
 .item-staff-hours {
     grid-area: staffHours;
-    align-self: center;
 }
 
 .item-welcome {
-    grid-area: welcome
+    grid-area: welcome;
+    margin-top: 30px;
 }
 
-.grid-container {
-    width: 100%;
+.item-testimonial-one {
+    grid-area: testimonial-one;
 }
-    
-.grid-container {
-    display: grid;
-    grid-template-columns: 15vw auto 15vw;
-    grid-template-rows: auto;
+
+.item-testimonial-two {
+    grid-area: testimonial-two;
+}
+
+.item-testimonial-three {
+    grid-area: testimonial-three;
 }
 
 .grid-section {
     display: grid;
-    grid-template-columns: 47.5% 47.5%;
-    grid-column-gap: 5%;
-    grid-template-rows: 25% auto;
-    grid-template-areas: 
-    "header image"
-    "paragraph image";
+    grid-template-columns: 15vw 1fr 5vw 1fr 15vw;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        ". header . image ."
+        ". paragraph . image .";
 }
 
 .grid-section-flipped {
     grid-template-areas: 
-    "image header"
-    "image paragraph"
+    ". image . header ."
+    ". image . paragraph .";
 }
 
 .grid-footer {
     display: grid;
-    grid-template-columns: 47.5% 5% 22.75% 22.75%;
+    grid-template-columns: 15vw 2fr 5vw 1fr 1fr 15vw;
     grid-template-rows: auto 25% 35% auto;
-    grid-template-areas: 
-    "image . header header"
-    "image . address address"
-    "image . centreHours staffHours"
-    "image . welcome welcome";
+    grid-template-areas:
+        ". image . header header ."
+        ". image . address address. "
+        ". image . staffHours centreHours ."
+        ". image . welcome welcome .";
+}
+
+.grid-testimonials {
+    display: grid;
+    grid-template-columns: 15vw 1fr 1fr 1fr 15vw;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        ". header header header ."
+        ". testimonial-one testimonial-two testimonial-three .";
+    background-color: var(--darkgreen);
+}
+
+.grid-testimonials article .item-header::before,
+.grid-testimonials article .item-header::after {
+    display: none;
+    background-color: transparent;
+}
+
+.grid-testimonials article {
+    text-align: center;
+    color: var(--white);
+    display: grid;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.grid-testimonials article i {
+    color: var(--lightgreen);
+    margin: 40px 0 20px 0;
+}
+
+.grid-testimonials article .item-header {
+    background-color: transparent;
+}
+
+.grid-testimonials .item-header {
+    text-align: center;
+    color: var(--lightgreen);
+    margin-bottom: 70px;
+}
+
+section.grid-testimonials .item-header::before, section.grid-testimonials .item-header::after {
+    display: none;
+}
+
+.grid-testimonials article p {
+    padding: 0 20px;
 }
 
 /*Small laptops & bigger tablets*/
@@ -344,34 +371,21 @@ section.flipped header::after {
         font-size: 1.4vw;
         line-height: 1.6;
     }
+
+    nav ul li a {
+        font-size: 1.4vw;
+    }
 }
 
 /*Tablets*/
 @media (min-width: 768px) and (max-width: 1024px) {
-    .grid-container {
-        grid-template-columns: 10vw auto 10vw;
-    }
-
-    body > header::before,
-    body > header::after,
-    section.flipped::after, 
-    section.flipped::before {
-        width: 10vw;
-    }
-
-    body > header::before,
-    section.flipped::before {
-        left: -10vw;
-    }
-
-    body > header::after,
-    section.flipped::after {
-        right: -10vw;
-    }
-
     nav {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: flex-end;
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end;
         margin-left: 0;
     }
 
@@ -392,17 +406,17 @@ section.flipped header::after {
         line-height: 1.6;
     }
     
-    section article header::before {
+    section article .item-header::before {
         width: 50px;
     } 
     
-    section.flipped header::before {
+    section.flipped .item-header::before {
         width: 32px;
         left: unset;
         right: -30px;
     }
 
-    section header::before {
+    section .item-header::before {
         width: 32px;
         left: -30px;
     }
@@ -415,10 +429,6 @@ section.flipped header::after {
 
 /* common tablets - small laptops */
 @media (min-width: 768px) and (max-width: 1440px) {
-    section header::after {
-        width: 62%;
-    }
-
     .headline {
         font-size: 2.8vw;
         z-index: 10;
@@ -428,36 +438,77 @@ section.flipped header::after {
         position: relative;
         z-index: 10;
     }
+
+    .logo {
+        width: 120px;
+        top: -26px;
+    }
 }
 
 /*Phones & phablets*/
 @media (max-width: 768px) {
-    .grid-container {
-        display: grid;
-        grid-template-columns: 10vw auto 10vw;
-        grid-template-rows: auto;
-    }
-
     .grid-section {
         display: grid;
-        grid-template-columns: 100%;
+        grid-template-columns: 10vw 1fr 10vw;
         grid-template-rows: auto auto auto;
         grid-template-areas:
-            "header"
-            "image"
-            "paragraph";
+            ". header ."
+            ". image ."
+            ". paragraph .";
     }
 
     .grid-footer {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 8vw 1fr 1fr 8vw;
         grid-template-rows: repeat(5, auto);
         grid-template-areas:
-            "header header"
-            "image image"
-            "address address"
-            "centreHours staffHours"
-            "welcome welcome";
+            ". header header ."
+            ". image image ."
+            ". address address ."
+            ". staffHours centreHours ."
+            ". welcome welcome .";
+    }
+
+    .grid-testimonials {
+        grid-template-columns: 10vw 1fr 10vw;
+        grid-column-gap: 0;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            ". header ."
+            ". testimonial-one ."
+            ". testimonial-two ."
+            ". testimonial-three .";
+        background-color: var(--darkgreen);
+    }
+
+    .grid-testimonials article {
+        margin: 20px 0;
+    }
+
+    .grid-testimonials article header {
+        color: var(--white);
+    }
+
+    .grid-testimonials article header h3 {
+        font-size: 4.4vw;
+    }
+
+    .grid-testimonials article p {
+        margin-top: 0;
+    }
+
+    .grid-testimonials article header .fa {
+        position: relative;
+        margin: 30px 0 20px 0;
+        font-size: 5vw;
+    }
+
+    .grid-testimonials .item-header {
+        margin: 20px 0;
+    }
+
+    body > header {
+        margin: 60px 0;
     }
 
     .item-address,
@@ -465,50 +516,34 @@ section.flipped header::after {
         text-align: center;
     }
 
-    section header .link {
+    section .item-header .link {
         color: var(--darkgray);
         margin: 10px 0;
         font-size: 4vw;
     }
 
-    section header .link:visited {
+    section .item-header .link:visited {
         color: var(--darkgray);
     }
 
-    section header::before, 
-    section header::after {
+    section .item-header::before, 
+    section .item-header::after {
         display: none;
     }
-
-    section.flipped::after, 
-    section.flipped::before,
-    body > header::before,
-    body > header::after {
-        width: 10vw;
-    }
-
-    section.flipped::after,
-    body > header::after {
-        right: -10vw;
-    }
-
-    section.flipped::before,
-    body > header::before {
-        left: -10vw;
-    }
     
-    section.christmas header {
+    section.christmas .item-header {
         background: transparent;
         color: var(--red);
     }
 
-    section header {
+    section .item-header {
         background: transparent;
         color: var(--darkgreen);
+        margin-bottom: 20px;
     }
 
     section, section.flipped {
-        padding: 3%;
+        padding: 20px 0;
     }
 
     .headline {
@@ -517,8 +552,8 @@ section.flipped header::after {
         text-align: center;
     }
 
-    section article header,
-    section.flipped header {
+    section article .item-header,
+    section.flipped .item-header {
         padding: 20px 0;
         width: 100%;
         color: var(--darkgreen);
@@ -526,13 +561,13 @@ section.flipped header::after {
         text-align: center;
     }
 
-    .christmas article header {
+    .christmas article .item-header {
         background: transparent;
         color: var(--red);
     }
 
-    section article header .link,
-    section article header .link:visited {
+    section article .item-header .link,
+    section article .item-header .link:visited {
         color: var(--darkgray);
         font-size: 4vw;
     }
@@ -546,8 +581,8 @@ section.flipped header::after {
 
     section p {
         width: 100%;
-        margin: 20px 0;
-        font-size: 3.5vw;
+        margin: 40px 0 20px 0;
+        font-size: 3vw;
     }
 
     section article header::before {
@@ -556,8 +591,8 @@ section.flipped header::after {
 
     .logo {
         width: 100px;
-        left: 0px;
-        top: -21px;
+        left: 10vw;
+        top: -26px;
         margin: 0;
     }
 
@@ -569,9 +604,9 @@ section.flipped header::after {
         display: block;
     }
     
-    header .fa {
+    header #menuButton {
         position: absolute;
-        right: 0;
+        right: 10vw;
         top: 14px;
         color: var(--darkgray);
     }
@@ -579,8 +614,11 @@ section.flipped header::after {
     header nav {
         background-color: var(--white);
         height: 50px;
+        -webkit-transition: 0.15s ease-out;
         transition: 0.15s ease-out;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
     
     header nav ul {
@@ -591,13 +629,14 @@ section.flipped header::after {
     }
     
     header nav.active {
-        height: 173px;
+        height: 200px;
     }
     
     header nav ul li {
         opacity: 0;
-        margin: 15px 0;
+        margin: 20px 0;
         display: block;
+        pointer-events: none;
     }
 
     header nav ul li:first-child {
@@ -610,7 +649,9 @@ section.flipped header::after {
     
     header nav.active ul li {
         opacity: 1;
+        -webkit-transition: 0.25s ease-in-out;
         transition: 0.25s ease-in-out;
+        pointer-events: all;
     }
     
     header nav ul li.active {
@@ -628,7 +669,8 @@ section.flipped header::after {
         width: 50px;
         background-color: var(--darkgreen);
         margin-left: calc(50% - 25px);
-        margin-top: 10px;
+        margin-top: 21px;
+        -webkit-transition: 0.15s ease-in-out;
         transition: 0.15s ease-in-out;
         opacity: 0;
     }
@@ -641,14 +683,23 @@ section.flipped header::after {
     header nav ul li a {
         font-size: 3.2vw;
     }
+
+    footer section .item-header .headline {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 475px) {
-    body > header {
-        margin-bottom: 20px;
-    }
-
     header nav ul li a {
         font-size: 4vw;
+    }
+
+    section p {
+        font-size: 3.4vw;
+    }
+
+    .logo.small {
+        width: 60px;
+        top: 4px;
     }
 }
